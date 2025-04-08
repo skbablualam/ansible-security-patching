@@ -21,5 +21,8 @@ ansible-security-patching/
 web1 ansible_host=172.20.1.100 ansible_user=root ansible_ssh_pass=Passw0rd
 web2 ansible_host=172.20.1.101 ansible_user=root ansible_ssh_pass=Passw0rd
 
-Usage
+
+
+## Usage
+
 ansible-playbook -i inventory security-patch.yml
