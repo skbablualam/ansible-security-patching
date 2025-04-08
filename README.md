@@ -11,7 +11,7 @@ This playbook automates the application of security updates on CentOS servers us
 - Conditional logic for yum and dnf usage
 - Optional automatic reboot if kernel is updated
 
-## Inventory Format
+# Inventory Format
 ```ini
 [web]
 web1 ansible_host=172.20.1.100 ansible_user=root ansible_ssh_pass=Passw0rd
