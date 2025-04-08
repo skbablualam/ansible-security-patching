@@ -3,16 +3,26 @@
   become: yes
 
   tasks:
-    - name: Install yum-plugin-security (if not installed)
+
+    - name: Apply security updates using dnf
+      when: ansible_facts['distribution_major_version'] | int >= 8
+      dnf:
+        name: '*'
+        state: latest
+        security: yes
+
+    - name: Install yum-plugin-security for CentOS 7
+      when: ansible_facts['distribution_major_version'] | int == 7
       yum:
         name: yum-plugin-security
         state: present
 
-    - name: Apply security updates
+    - name: Apply security updates using yum for CentOS 7
+      when: ansible_facts['distribution_major_version'] | int == 7
       yum:
         name: '*'
-        security: yes
         state: latest
+        security: yes
 
     - name: Reboot if kernel was updated (optional)
       reboot:
