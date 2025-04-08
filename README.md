@@ -18,7 +18,9 @@ ansible-playbook -i inventory security-patch.yml
 ## file hierarchy
 
 ansible-security-patching/
+
 ├── inventory
+
 └── security-patch.yml
 
 
