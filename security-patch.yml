@@ -1,5 +1,24 @@
-- name: Apply security updates
-  yum:
-    name: '*'
-    security: yes
-    state: latest
+- name: Apply Security Patches to CentOS Servers
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Install yum-plugin-security (if not installed)
+      yum:
+        name: yum-plugin-security
+        state: present
+
+    - name: Apply security updates
+      yum:
+        name: '*'
+        security: yes
+        state: latest
+
+    - name: Reboot if kernel was updated (optional)
+      reboot:
+        msg: "Rebooting after security patching"
+        connect_timeout: 5
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+      when: ansible_facts.packages['kernel'][0]['version'] is defined
