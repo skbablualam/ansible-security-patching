@@ -23,5 +23,4 @@ ansible-security-patching/
 ├── inventory
 └── security-patch.yml
 
-![image](https://github.com/user-attachments/assets/0054f8f4-ec35-420d-b75f-5f1df134496d)
-
+ansible-playbook -i inventory security-patch.yml
